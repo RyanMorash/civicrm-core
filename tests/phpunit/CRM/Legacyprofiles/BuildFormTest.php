@@ -4,11 +4,13 @@ use Civi\Api4\UFField;
 use Civi\Test\FormWrapper;
 
 /**
- * Test CRM_UF_Form_Field.
+ * The legacyprofiles buildForm guard for profile delete and disable.
+ *
+ * This is not a general test of profile fields.
  *
  * @group headless
  */
-class CRM_UF_Form_FieldTest extends CiviUnitTestCase {
+class CRM_Legacyprofiles_BuildFormTest extends CiviUnitTestCase {
 
   /**
    * Status of legacyprofiles before this test enabled it.
