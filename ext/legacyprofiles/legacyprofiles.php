@@ -48,6 +48,11 @@ function legacyprofiles_civicrm_enable(): void {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_buildForm
  */
 function legacyprofiles_civicrm_buildForm($formName, $form): void {
+  // Delete and disable confirmations do not render or submit these elements.
+  // A required one, such as Visibility, blocks the action.
+  if (($form->getAction() ?? 0) & (CRM_Core_Action::DELETE | CRM_Core_Action::DISABLE)) {
+    return;
+  }
   if ($formName === 'CRM_UF_Form_Group') {
     $group = ['' => ts('- select -')] + CRM_Core_PseudoConstant::group();
     $form->addElement('select', 'limit_listings_group_id', ts('Limit listings to a specific Group'), $group);
